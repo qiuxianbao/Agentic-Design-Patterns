@@ -153,7 +153,8 @@ Create a JSON object with the following structure:
 
 Return ONLY valid JSON, no additional text."""
         )
-        
+
+        # 知识点：LCEL
         # Build the chain using LangChain Expression Language (LCEL)
         # Step 1: Extract information
         extraction_chain = (
@@ -305,4 +306,45 @@ if __name__ == "__main__":
     print(json.dumps(result, indent=2))
     print("=" * 60)
 
-
+    """
+    ============================================================
+    DOCUMENT ANALYSIS RESULTS
+    ============================================================
+    {
+      "summary": "TechCorp Inc. announced today that CEO Sarah Johnson is stepping down after 15 years, with Michael Chen taking over as CEO on January 15, 2024. The company also reported record quarterly earnings of $2.5 billion and plans to expand into the AI and cloud computing markets.",
+      "entities": {
+        "people": [
+          "Sarah Johnson",
+          "Michael Chen"
+        ],
+        "organizations": [
+          "TechCorp Inc."
+        ],
+        "locations": [
+          "San Francisco"
+        ],
+        "dates": [
+          "Today",
+          "January 15, 2024",
+          "15 years"
+        ],
+        "concepts": [
+          "Leadership Change",
+          "Company Performance",
+          "Expansion into AI and Cloud Computing Markets",
+          "Transition Plan"
+        ]
+      },
+      "key_facts": [
+        "$2.5 billion",
+        "January 15, 2024"
+      ],
+      "main_topics": [
+        "Leadership Change",
+        "Company Performance",
+        "Future Focus",
+        "Expansion into AI and Cloud Computing Markets"
+      ]
+    }
+    ============================================================
+    """
