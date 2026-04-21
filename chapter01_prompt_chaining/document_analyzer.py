@@ -14,7 +14,8 @@ The pipeline consists of:
 import os
 from typing import Dict, Any, Optional
 from dotenv import load_dotenv
-from langchain_Gemini import ChatGemini
+# from langchain_Gemini import ChatGemini
+from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.output_parsers.json import SimpleJsonOutputParser
@@ -44,19 +45,25 @@ class DocumentAnalyzer:
             temperature: Sampling temperature (0 for deterministic output)
             api_key: Gemini API key (if not provided, uses GEMINI_API_KEY env var)
         """
-        api_key = api_key or os.getenv("GEMINI_API_KEY")
-        if not api_key:
-            raise ValueError(
-                "Gemini API key is required. Set GEMINI_API_KEY environment variable "
-                "or pass api_key parameter."
-            )
+        # api_key = api_key or os.getenv("GEMINI_API_KEY")
+        # if not api_key:
+        #     raise ValueError(
+        #         "Gemini API key is required. Set GEMINI_API_KEY environment variable "
+        #         "or pass api_key parameter."
+        #     )
         
-        self.llm = ChatGemini(
-            model=model_name,
-            temperature=temperature,
-            api_key=api_key
+        # self.llm = ChatGemini(
+        #     model=model_name,
+        #     temperature=temperature,
+        #     api_key=api_key
+        # )
+
+        self.llm = ChatOllama(
+            model="gemma2:2b",
+            base_url="http://localhost:11434/",
+            temperature=0,
         )
-        
+
         # Initialize the prompt chain
         self._build_chain()
     
